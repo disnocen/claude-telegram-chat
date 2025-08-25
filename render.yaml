@@ -1,0 +1,28 @@
+services:
+  - type: worker
+    name: claude-telegram-bot
+    runtime: docker
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO_NAME
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: MASTER_PASSWORD
+        sync: false
+      - key: DEFAULT_CLAUDE_API_KEY
+        sync: false
+      - key: SESSION_STRING
+        sync: false
+      - key: LOG_LEVEL
+        value: INFO
+      - key: MAX_CONVERSATION_LENGTH
+        value: "20"
+      - key: SESSION_TIMEOUT_HOURS
+        value: "24"
+    healthCheckPath: /health
+    autoDeploy: true
