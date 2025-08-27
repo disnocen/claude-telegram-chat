@@ -1,0 +1,23 @@
+{
+  "name": "claude-telegram-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that interfaces with Claude API",
+  "main": "api/webhook.py",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod",
+    "set-webhook": "python scripts/set_webhook.py"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "claude",
+    "ai",
+    "anthropic"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.x"
+  }
+}
