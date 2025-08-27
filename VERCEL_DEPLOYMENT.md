@@ -1,14 +1,21 @@
 # Vercel Deployment Guide
 
-This guide will help you deploy the Claude Telegram Bot to Vercel.
+This guide will help you deploy the Claude Telegram Bot to Vercel using serverless webhooks.
 
 ## Prerequisites
 
 1. A Vercel account (sign up at [vercel.com](https://vercel.com))
 2. Vercel CLI installed (`npm i -g vercel`)
 3. Telegram Bot Token from [@BotFather](https://t.me/botfather)
-4. Telegram API credentials from [my.telegram.org](https://my.telegram.org)
-5. Claude API key from [Anthropic Console](https://console.anthropic.com)
+4. Claude API key from [Anthropic Console](https://console.anthropic.com)
+
+## Architecture
+
+This serverless version uses:
+- **Webhooks** instead of polling for real-time message handling
+- **Direct Telegram API calls** instead of Telethon for better serverless compatibility
+- **File-based session storage** in `/tmp` for user authentication persistence
+- **Pure serverless functions** compatible with Vercel's constraints
 
 ## Environment Variables
 
@@ -16,16 +23,14 @@ You'll need to set the following environment variables in Vercel:
 
 ### Required Variables
 - `BOT_TOKEN` - Your Telegram bot token from BotFather
-- `API_ID` - Your Telegram API ID
-- `API_HASH` - Your Telegram API hash
 - `MASTER_PASSWORD` - Master password for authentication (optional)
 - `DEFAULT_CLAUDE_API_KEY` - Your Claude API key
 
 ### Optional Variables
-- `SESSION_STRING` - Telegram session string (generated after first run)
 - `LOG_LEVEL` - Logging level (default: INFO)
 - `MAX_CONVERSATION_LENGTH` - Max conversation history (default: 20)
 - `SESSION_TIMEOUT_HOURS` - Session timeout in hours (default: 24)
+- `WEBHOOK_SECRET` - Secret token for webhook security (optional)
 
 ## Deployment Steps
 
