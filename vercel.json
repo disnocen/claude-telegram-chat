@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "api/webhook.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb"
+      }
     }
   ],
   "routes": [
@@ -20,15 +23,6 @@
       "dest": "/api/webhook.py"
     }
   ],
-  "env": {
-    "BOT_TOKEN": "@bot-token",
-    "API_ID": "@api-id",
-    "API_HASH": "@api-hash",
-    "MASTER_PASSWORD": "@master-password",
-    "DEFAULT_CLAUDE_API_KEY": "@default-claude-api-key",
-    "SESSION_STRING": "@session-string",
-    "LOG_LEVEL": "INFO",
-    "MAX_CONVERSATION_LENGTH": "20",
-    "SESSION_TIMEOUT_HOURS": "24"
-  }
+  "buildCommand": "pip install uv && uv pip install --system -r requirements.txt",
+  "installCommand": "pip install uv"
 }
