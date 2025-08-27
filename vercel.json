@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/webhook.py",
+      "src": "api/*.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb"
@@ -15,7 +15,7 @@
       "dest": "/api/webhook.py"
     },
     {
-      "src": "/health",
+      "src": "/health", 
       "dest": "/api/health.py"
     },
     {
@@ -23,6 +23,6 @@
       "dest": "/api/webhook.py"
     }
   ],
-  "buildCommand": "pip install uv && uv pip install --system -r requirements.txt",
-  "installCommand": "pip install uv"
+  "buildCommand": "pip install uv && uv pip install --system --no-cache -r requirements.txt",
+  "installCommand": "pip install --upgrade pip"
 }
